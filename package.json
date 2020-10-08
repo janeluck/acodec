@@ -8,9 +8,9 @@
     "declarations": true
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-acodec",
+    "start": "egg-scripts start --daemon --title=egg-server-acodec --sticky",
     "stop": "egg-scripts stop --title=egg-server-acodec",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test-local": "egg-bin test",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -22,8 +22,11 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "@types/socket.io": "^2.1.11",
     "egg": "^2.6.1",
-    "egg-scripts": "^2.6.0"
+    "egg-scripts": "^2.6.0",
+    "egg-socket.io": "^4.1.6",
+    "egg-websocket": "0.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
