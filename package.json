@@ -22,11 +22,10 @@
     "clean": "ets clean"
   },
   "dependencies": {
-    "@types/socket.io": "^2.1.11",
+    "@types/ws": "^7.2.7",
     "egg": "^2.6.1",
     "egg-scripts": "^2.6.0",
-    "egg-socket.io": "^4.1.6",
-    "egg-websocket": "0.0.1"
+    "ws": "^7.3.1"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
