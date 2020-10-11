@@ -9,25 +9,23 @@
 </ul>
 <button onclick="play()">play</button>
 </div>
-<video id="player"></video>
+<video id="player" controls autoplay></video>
 <script src="/public/jmuxer.min.js"></script>
 <script>
 const ws = new WebSocket('ws://127.0.0.1:7001/ws');
-
+ws.binaryType = 'arraybuffer';
 function play() {
   ws.send(`msg: number${Math.floor(Math.random() * 100)}`);
 }
 
 const jmuxer = new JMuxer({
   node: 'player',
-  mode: 'both', /* available values are: both, audio and video */
-  debug: false,
+  mode: 'video', /* available values are: both, audio and video */
+  debug: false
 });
-
-/* Now feed media data using feed method. audio and video is buffer data and duration is in miliseconds */
-jmuxer.feed({
-  audio: '',
-  video: '',
-  duration: '',
-});
+ws.addEventListener('message',function(event) {
+          jmuxer.feed({
+            video: new Uint8Array(event.data)
+          });
+     });
 </script>

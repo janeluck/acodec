@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const wss = require('./wss').wss;
+const wss = require('./wss').wsserver;
 module.exports = app => {
   app.once('server', server => {
     // websocket
