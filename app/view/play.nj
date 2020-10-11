@@ -1,4 +1,5 @@
 <h1>List</h1>
+<div>
 <ul>
 {% for item in list %}
   <li>{{ item }}</li>
@@ -6,10 +7,27 @@
   <li>This would display if the 'item' collection were empty</li>
 {% endfor %}
 </ul>
-<button onclick="send()">send</button>
+<button onclick="play()">play</button>
+</div>
+<video id="player"></video>
+<script src="/public/jmuxer.min.js"></script>
 <script>
-  const ws = new WebSocket('ws://127.0.0.1:7001');
-  function send() {
-    ws.send(`msg: number${Math.floor(Math.random() * 100)}`);
-  }
+const ws = new WebSocket('ws://127.0.0.1:7001/ws');
+
+function play() {
+  ws.send(`msg: number${Math.floor(Math.random() * 100)}`);
+}
+
+const jmuxer = new JMuxer({
+  node: 'player',
+  mode: 'both', /* available values are: both, audio and video */
+  debug: false,
+});
+
+/* Now feed media data using feed method. audio and video is buffer data and duration is in miliseconds */
+jmuxer.feed({
+  audio: '',
+  video: '',
+  duration: '',
+});
 </script>
