@@ -12,8 +12,7 @@
 <video id="player" controls autoplay></video>
 <script src="/public/jmuxer.min.js"></script>
 <script>
-const host = window.location.host
-const ws = new WebSocket('ws://'+ host + '/ws');
+const ws = new WebSocket('ws://127.0.0.1:7001/ws');
 ws.binaryType = 'arraybuffer';
 function play() {
   ws.send(`msg: number${Math.floor(Math.random() * 100)}`);
