@@ -5,5 +5,7 @@ export default (app: Application) => {
 
   router.get('/', controller.home.index);
   router.get('/play', controller.play.index);
+  router.get('/both', controller.both.index);
+  router.get('/file', controller.file.index);
   // router.get('/chat', io.controller.chat.index);
 };

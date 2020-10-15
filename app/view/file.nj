@@ -1,0 +1,6 @@
+<h1>file to video</h1>
+<video id="player" controls autoplay></video>
+<script>
+var video = document.querySelector('video');
+var mediaSource = new MediaSource();
+</script>

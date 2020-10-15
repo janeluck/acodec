@@ -1,31 +1,30 @@
-<h1>List</h1>
+<h1>both</h1>
 <div>
-<ul>
-{% for item in list %}
-  <li>{{ item }}</li>
-{% else %}
-  <li>This would display if the 'item' collection were empty</li>
-{% endfor %}
-</ul>
 <button onclick="play()">play</button>
 </div>
 <video id="player" controls autoplay></video>
 <script src="/public/jmuxer.min.js"></script>
 <script>
-const ws = new WebSocket('ws://127.0.0.1:7001/ws');
+const ws = new WebSocket('ws://9.134.128.26:8090/');
 ws.binaryType = 'arraybuffer';
 function play() {
-  ws.send(`msg: number${Math.floor(Math.random() * 100)}`);
+  ws.send(`{"cmd":"startvideo","controlkey":"20201015002370892-50741-eeee2bf3-b758-4c7a-99ca-8cdbb7253d19","device_id":50741,"test_id_str":"20201015002370892"}`);
 }
 
 const jmuxer = new JMuxer({
   node: 'player',
-  mode: 'video', /* available values are: both, audio and video */
+  mode: 'both', /* available values are: both, audio and video */
   debug: false
 });
 ws.addEventListener('message',function(event) {
+          const messageData = new Uint8Array(event.data);
+          console.log(messageData[0])
+          let dataType = 'video';
+          if(messageData[0] === 255){
+            dataType = 'audio'
+          }
           jmuxer.feed({
-            video: new Uint8Array(event.data)
+            [dataType]: new Uint8Array(event.data)
           });
      });
 </script>
