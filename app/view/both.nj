@@ -5,10 +5,10 @@
 <video id="player" controls autoplay></video>
 <script src="/public/jmuxer.min.js"></script>
 <script>
-const ws = new WebSocket('ws://9.134.128.26:8090/');
+const ws = new WebSocket('{{ws}}' );
 ws.binaryType = 'arraybuffer';
 function play() {
-  ws.send(`{"cmd":"startvideo","controlkey":"20201015002370892-50741-eeee2bf3-b758-4c7a-99ca-8cdbb7253d19","device_id":50741,"test_id_str":"20201015002370892"}`);
+  ws.send('{{opt}}');
 }
 
 const jmuxer = new JMuxer({
